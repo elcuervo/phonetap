@@ -5,22 +5,26 @@ scenario("PhoneTap - Camera", {
   "setup": function(){
     navigator = new PhoneTap();
   },
+
   "should get a base64 image from the camera": function(){
     navigator.camera.getPicture(function(image_data){
       assert_equal(image_data.length, 608);
     });
   },
+
   "should get a message when failing": function(){
     navigator.camera.getPictureFail(function(){}, function(error){
       assert(error);
     });
   }
+
 });
 
 scenario("PhoneTap - Geolocation", {
   "setup": function(){
     var navigator = new PhoneTap();
   },
+
   "should get a geolocation": function(){
     navigator.geolocation.getCurrentPosition(function(position){
       assert(position.coords.latitude);
@@ -31,6 +35,13 @@ scenario("PhoneTap - Geolocation", {
       assert(position.coords.heading);
       assert(position.coords.speed);
       assert(new Date(position.timestamp));
+    });
+  },
+
+  "should get an error object when fails": function(){
+    navigator.geolocation.getCurrentPositionFail(function(){}, function(error){
+      assert(error.code);
+      assert(error.message);
     });
   }
 });

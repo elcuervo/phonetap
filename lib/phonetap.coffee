@@ -41,4 +41,5 @@ class @PhoneTap
       })
 
     getCurrentPositionFail: (success, fail, options) ->
+      fail(code: 3, message: "Geolocation Error: Timeout.")
   }
