@@ -1,11 +1,8 @@
 var scenario = require('gerbil');
 var PhoneTap = require('../lib/phonetap.js').PhoneTap;
+var navigator = new PhoneTap();
 
 scenario("PhoneTap - Camera", {
-  "setup": function(){
-    navigator = new PhoneTap();
-  },
-
   "should get a base64 image from the camera": function(){
     navigator.camera.getPicture(function(image_data){
       assert_equal(image_data.length, 608);
@@ -17,14 +14,9 @@ scenario("PhoneTap - Camera", {
       assert(error);
     });
   }
-
 });
 
 scenario("PhoneTap - Geolocation", {
-  "setup": function(){
-    var navigator = new PhoneTap();
-  },
-
   "should get a geolocation": function(){
     navigator.geolocation.getCurrentPosition(function(position){
       assert(position.coords.latitude);
