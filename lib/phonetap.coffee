@@ -21,5 +21,24 @@ class @PhoneTap
       success(this.jpeg_data_url)
 
     getPictureFail: (success, fail, options) ->
-      fail()
+      message = "Image not selected"
+      fail(message)
+  }
+
+  geolocation: {
+    getCurrentPosition: (success, fail, options) ->
+      success({
+        coords: {
+          latitude: "-34.912528"
+          longitude: "-56.161405"
+          altitude: "0"
+          accuracy: "1414"
+          altitudeAccuracy: "-1"
+          heading: "-1"
+          speed: "-1"
+        }
+        timestamp: new Date().getTime();
+      })
+
+    getCurrentPositionFail: (success, fail, options) ->
   }
