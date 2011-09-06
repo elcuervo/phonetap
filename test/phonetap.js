@@ -16,6 +16,23 @@ scenario("PhoneTap - Camera", {
   }
 });
 
+scenario("PhoneTap - Accelerometer", {
+  "should get the current acceleration": function(){
+    navigator.accelerometer.getCurrentAcceleration(function(acceleration){
+      assert(typeof acceleration.x == 'number');
+      assert(typeof acceleration.y == 'number');
+      assert(typeof acceleration.z == 'number');
+      assert(typeof acceleration.timestamp == 'number');
+    });
+  },
+
+  "should get an id for the watch interval and clear it": function(){
+    var watch_id = navigator.accelerometer.watchAcceleration(function(acceleration){});
+    assert(watch_id);
+    navigator.accelerometer.clearWatch(watch_id);
+  },
+});
+
 scenario("PhoneTap - Geolocation", {
   "should get a geolocation": function(){
     navigator.geolocation.getCurrentPosition(function(position){
@@ -35,5 +52,5 @@ scenario("PhoneTap - Geolocation", {
       assert(error.code);
       assert(error.message);
     });
-  }
+  },
 });

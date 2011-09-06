@@ -22,6 +22,13 @@ class @PhoneTap
         z: 2
         timestamp: new Date().getTime()
       })
+
+    watchAcceleration: (success, fail, options = {}) ->
+      miliseconds = options["frequency"] || 1000
+      setInterval(this.getCurrentAcceleration, miliseconds, success, fail)
+
+    clearWatch: (watch_id) ->
+      clearInterval(watch_id)
   }
 
   camera: {
