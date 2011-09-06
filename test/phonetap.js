@@ -1,11 +1,23 @@
 var scenario = require('gerbil');
-var PhoneTap = require('../lib/phonetap.js').PhoneTap;
+var phonetap = require('../lib/phonetap.js');
+var PhoneTap = phonetap.PhoneTap;
+var Camera = phonetap.Camera;
 var navigator = new PhoneTap();
 
 scenario("PhoneTap - Camera", {
   "should get a base64 image from the camera": function(){
     navigator.camera.getPicture(function(image_data){
       assert_equal(image_data.length, 608);
+    });
+  },
+
+  "should get an image path as png": function(){
+    var success = function(image_path){
+      assert_equal(image_path, "file://localhost/var/mobile/Applications/CF34ES17-032H-G24F-51C7DH34AQWE/tmp/photo_004.png");
+    }
+    navigator.camera.getPicture(success, function(){}, {
+      "encodingType": Camera.EncodingType.PNG,
+      "destinationType": Camera.DestinationType.FILE_URI
     });
   },
 
@@ -23,6 +35,12 @@ scenario("PhoneTap - Accelerometer", {
       assert(typeof acceleration.y == 'number');
       assert(typeof acceleration.z == 'number');
       assert(typeof acceleration.timestamp == 'number');
+    });
+  },
+
+  "should catch a phantom error": function(){
+    navigator.accelerometer.getCurrentAccelerationFail(function(){}, function(){
+      assert(true);
     });
   },
 

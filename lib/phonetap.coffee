@@ -1,4 +1,4 @@
-class @Camera
+Camera =
   DestinationType: {
     DATA_URL: 0
     FILE_URI: 1
@@ -23,6 +23,9 @@ class @PhoneTap
         timestamp: new Date().getTime()
       })
 
+    getCurrentAccelerationFail: (success, fail, options) ->
+      fail()
+
     watchAcceleration: (success, fail, options = {}) ->
       miliseconds = options["frequency"] || 1000
       setInterval(this.getCurrentAcceleration, miliseconds, success, fail)
@@ -34,10 +37,28 @@ class @PhoneTap
   camera: {
     jpeg_data_url: "/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAYEBAQFBAYFBQYJBgUGCQsIBgYICwwKCgsKCgwQDAwMDAwMEAwODxAPDgwTExQUExMcGxsbHCAgICAgICAgICD/2wBDAQcHBw0MDRgQEBgaFREVGiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICD/wAARCAFKABsDAREAAhEBAxEB/8QAGQABAQEBAQEAAAAAAAAAAAAAAAECBAMI/8QAFxABAQEBAAAAAAAAAAAAAAAAABESE//EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwD6pAAAAAAABAAAASgUCgUEAAABAAAASgUCgUAAAAGQAAAKBQKBQQAAAEAAABAAAASgUCgUEAAABAAAASgUCgUEAAABAAAAQAAAEoFAoFBAAAAQAAAEoFAoFAAAABkAAACgUCgUEAAABAAAAQAAAEoFAoFBAAAAQAAAEoFAoFBAAAAQAAAEAAAB47A2BsDYOboB0A6AdAc3QDoB0A6A5tgbA2BsGQAAAf/Z"
 
-    getPicture: (success, fail, options) ->
-      success(this.jpeg_data_url)
+    png_data_url: "iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAAGElEQVQIW2P4DwcMDAxAfBvMAhEQMYgcACEHG8ELxtbPAAAAAElFTkSuQmCC"
 
-    getPictureFail: (success, fail, options) ->
+    jpeg_image_path: "file://localhost/var/mobile/Applications/CF34ES17-032H-G24F-51C7DH34AQWE/tmp/photo_004.jpg"
+
+    png_image_path: "file://localhost/var/mobile/Applications/CF34ES17-032H-G24F-51C7DH34AQWE/tmp/photo_004.png"
+
+    getPicture: (success, fail, options = {}) ->
+      image =
+        if options["destinationType"] is Camera.DestinationType.FILE_URI
+          if options["encodingType"] is Camera.EncodingType.PNG
+            this.png_image_path
+          else
+            this.jpeg_image_path
+        else
+          if options["encodingType"] is Camera.EncodingType.PNG
+            this.png_data_url
+          else
+            this.jpeg_data_url
+
+      success(image)
+
+    getPictureFail: (success, fail, options = {}) ->
       message = "Image not selected"
       fail(message)
   }
@@ -60,3 +81,6 @@ class @PhoneTap
     getCurrentPositionFail: (success, fail, options) ->
       fail(code: 3, message: "Geolocation Error: Timeout.")
   }
+
+if module?
+  module.exports.Camera = Camera
