@@ -24,7 +24,16 @@ Or you can use the npm package
 $ npm install phonetap
 ```
 
-## Usage
+## Usage within Nodejs
+
+```javascript
+var phonetap = require('phonetap');
+var Camera = phonetap.Camera;
+var PhoneTap = phonetap.PhoneTap;
+var navigator = new PhoneTap();
+```
+
+## Usage in a browser
 
 ```javascript
 var navigator = new PhoneTap();
