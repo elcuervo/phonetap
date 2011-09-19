@@ -72,3 +72,10 @@ scenario("PhoneTap - Geolocation", {
     });
   },
 });
+
+scenario("PhoneTap - Splashscreen", {
+  "should hide the splashscreen": function(){
+    navigator.splashscreen.hide();
+    assert(true);
+  },
+});
