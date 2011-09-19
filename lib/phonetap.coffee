@@ -82,5 +82,9 @@ class @PhoneTap
       fail(code: 3, message: "Geolocation Error: Timeout.")
   }
 
+  splashscreen:
+    hide: ->
+
+
 if module?
   module.exports.Camera = Camera
