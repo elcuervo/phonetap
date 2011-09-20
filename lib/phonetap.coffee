@@ -88,3 +88,5 @@ Camera =
 
 if module?
   module.exports.Camera = Camera
+else
+  this.navigator[key] = value for own key, value of PhoneTap
