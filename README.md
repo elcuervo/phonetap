@@ -35,11 +35,7 @@ var navigator = new PhoneTap();
 
 ## Usage in a browser
 
-```javascript
-var navigator = new PhoneTap();
-```
-
-And that's it!, now you can use all the fancy tools from PhoneGap
+Just substitute or route the phonegap.js file with phonetap.js and that's it! now you can use all the fancy tools from PhoneGap
 
 ```javascript
 navigator.geolocation.getCurrentPosition(function(position){
