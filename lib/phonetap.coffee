@@ -13,7 +13,7 @@ Camera =
     SAVEDPHOTOALBUM: 2
   }
 
-class @PhoneTap
+@PhoneTap =
   accelerometer: {
     getCurrentAcceleration: (success, fail, options) ->
       success({
