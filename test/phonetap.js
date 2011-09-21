@@ -2,7 +2,7 @@ var scenario = require('gerbil');
 var phonetap = require('../lib/phonetap.js');
 var PhoneTap = phonetap.PhoneTap;
 var Camera = phonetap.Camera;
-var navigator = new PhoneTap();
+var navigator = PhoneTap;
 
 scenario("PhoneTap - Camera", {
   "should get a base64 image from the camera": function(){

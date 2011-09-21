@@ -13,7 +13,7 @@ Camera =
     SAVEDPHOTOALBUM: 2
   }
 
-class @PhoneTap
+@PhoneTap =
   accelerometer: {
     getCurrentAcceleration: (success, fail, options) ->
       success({
@@ -88,3 +88,5 @@ class @PhoneTap
 
 if module?
   module.exports.Camera = Camera
+else
+  this.navigator[key] = value for own key, value of PhoneTap
