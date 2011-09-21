@@ -1,7 +1,7 @@
 {
   "name": "phonetap",
   "description": "PhoneTap: a tapped version of PhoneGap, to do tests without running a simulator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "elCuervo <elcuervo@elcuervo.co>",
   "keywords": ["tdd", "testing", "phonegap", "phonetap"],
   "directories": {"lib": "./lib", "test": "./test"},
