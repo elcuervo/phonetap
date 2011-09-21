@@ -29,8 +29,7 @@ $ npm install phonetap
 ```javascript
 var phonetap = require('phonetap');
 var Camera = phonetap.Camera;
-var PhoneTap = phonetap.PhoneTap;
-var navigator = new PhoneTap();
+var navigator = phonetap.PhoneTap;
 ```
 
 ## Usage in a browser
