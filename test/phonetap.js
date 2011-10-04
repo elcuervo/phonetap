@@ -2,6 +2,7 @@ var scenario = require('gerbil');
 var phonetap = require('../lib/phonetap.js');
 var PhoneTap = phonetap.PhoneTap;
 var Camera = phonetap.Camera;
+var device = phonetap.device;
 var navigator = PhoneTap;
 
 scenario("PhoneTap - Camera", {

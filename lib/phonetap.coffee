@@ -1,3 +1,5 @@
+device = platform: "Os"
+
 Camera =
   DestinationType: {
     DATA_URL: 0
@@ -88,5 +90,8 @@ Camera =
 
 if module?
   module.exports.Camera = Camera
+  module.exports.device = device
 else
+  @Camera = Camera
+  @device = device
   this.navigator[key] = value for own key, value of PhoneTap
