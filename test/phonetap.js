@@ -8,13 +8,13 @@ var navigator = PhoneTap;
 scenario("PhoneTap - Camera", {
   "should get a base64 image from the camera": function(){
     navigator.camera.getPicture(function(image_data){
-      assert_equal(image_data.length, 608);
+      assert_equal(image_data.length, 18468);
     });
   },
 
   "should get an image path as png": function(){
     var success = function(image_path){
-      assert_equal(image_path, "file://localhost/var/mobile/Applications/CF34ES17-032H-G24F-51C7DH34AQWE/tmp/photo_004.png");
+      assert_equal(image_path, "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAAGElEQVQIW2P4DwcMDAxAfBvMAhEQMYgcACEHG8ELxtbPAAAAAElFTkSuQmCC");
     }
     navigator.camera.getPicture(success, function(){}, {
       "encodingType": Camera.EncodingType.PNG,
