@@ -1,5 +1,7 @@
 NODE = node
 
-all:
-	coffee -c lib/phonetap.coffee
+all: compile
 	@$(NODE) test/*.js
+
+compile:
+	coffee -c lib/phonetap.coffee
